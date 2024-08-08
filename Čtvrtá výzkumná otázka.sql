@@ -15,18 +15,18 @@ yearly_change AS (
         category_code,
         year,
         avg_value,
-        LAG(avg_value) OVER (PARTITION BY category_code ORDER BY year) AS previous_avg_value
+        LAG(avg_value) OVER (PARTITION BY category_code ORDER BY year) AS prev_avg_value
     FROM 
         yearly_avg
 ),
 average_increase AS (
     SELECT 
         year,
-        AVG((avg_value / previous_avg_value - 1) * 100) AS average_annual_increase 
+        AVG((avg_value / prev_avg_value - 1) * 100) AS average_annual_increase 
     FROM 
         yearly_change
     WHERE 
-        previous_avg_value IS NOT NULL
+        prev_avg_value IS NOT NULL
     GROUP BY 
         year
 )
