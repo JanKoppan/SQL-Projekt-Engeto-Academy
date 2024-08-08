@@ -4,7 +4,7 @@ WITH yearly_avg AS (
         industry_branch_code,
         payroll_year,
         AVG(value) AS avg_value,
-        LAG(AVG(value)) OVER (PARTITION BY industry_branch_code ORDER BY payroll_year) AS previous_avg_value
+        LAG(AVG(value)) OVER (PARTITION BY industry_branch_code ORDER BY payroll_year) AS prev_avg_value
     FROM 
         czechia_payroll
     WHERE 
@@ -21,4 +21,4 @@ WITH yearly_avg AS (
     FROM 
         yearly_avg
     WHERE 
-        avg_value < previous_avg_value;
+        avg_value < prev_avg_value;
