@@ -1,4 +1,5 @@
 -- Čtvrtá výzkumná otázka: Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
+-- 1. Krok: Meziroční nárůst cen potravin v procentech
 WITH yearly_avg AS (
     SELECT 
         category_code,
@@ -37,3 +38,37 @@ average_increase AS (
         average_increase
     ORDER BY
         year;
+-- 2. Krok: Meziroční nárůst mezd v procentech
+WITH yearly_avg AS (
+    SELECT 
+        industry_branch_code,
+        payroll_year,
+        AVG(value) AS avg_value,
+        LAG(AVG(value)) OVER (PARTITION BY industry_branch_code ORDER BY payroll_year) AS prev_avg_value
+    FROM 
+        czechia_payroll
+    WHERE 
+        value_type_code = 5958 
+        AND industry_branch_code IS NOT NULL 
+        AND payroll_year BETWEEN 2006 AND 2018
+    GROUP BY 
+        industry_branch_code, 
+        payroll_year
+)
+    SELECT 
+        payroll_year,
+        AVG(avg_value) AS avg_value,
+        AVG(
+        CASE 
+            WHEN prev_avg_value IS NOT NULL AND prev_avg_value <> 0 THEN (avg_value - prev_avg_value) / prev_avg_value * 100
+            ELSE NULL
+        END
+        ) AS avg_percent_change
+    FROM 
+        yearly_avg
+    WHERE 
+        prev_avg_value IS NOT NULL
+    GROUP BY 
+        payroll_year
+    ORDER BY 
+        payroll_year;
