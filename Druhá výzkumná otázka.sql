@@ -15,6 +15,7 @@ WHERE
     AND cz_payroll.value_type_code = 5958 
     AND cz_price.value IS NOT NULL 
     AND cz_price.value != 0
+    AND INDUSTRY_BRANCH_CODE  IS NOT NULL
 ORDER BY 
     cz_price.date_from DESC;
 -- První období - mléko
@@ -34,7 +35,7 @@ WHERE
     AND cz_price.value IS NOT NULL 
     AND cz_price.value != 0
 ORDER BY 
-    cz_price.date_from ASC;
+    cz_price.date_from ASC;  
 -- Poslední období - chleba
 SELECT 
     cz_price.*, 
