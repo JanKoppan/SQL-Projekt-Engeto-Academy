@@ -1,3 +1,4 @@
+-- Kontakt: jan.koppan@seznam.cz
 -- primární tabulka - mzdy a ceny
 CREATE TABLE T_JAN_KOPPAN_PROJECT_SQL_PRIMARY_FINAL AS
 SELECT 
