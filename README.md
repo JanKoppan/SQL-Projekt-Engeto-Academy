@@ -1,2 +1,3 @@
 # SQL-Projekt-Engeto-Academy
 Dobrý den, Pro Akademii Engeto jsem vypracoval projekt, který se zaměřuje na analýzu dat v oblasti potravinářství a mezd v letech 2006 až 2018 v České republice. Ve svém projektu se zabývám analýzou informací získaných z dat. Věnuji se zde také historickému vývoji HDP v EU a jeho dopadu na ceny potravin a mzdy v ČR. Projekt je rozdělen do sedmi skriptů, z nichž první dva představují primární a sekundární tabulky. Dalších pět skriptů se zabývá jednotlivými výzkumnými otázkami. Projekt také obsahuje dokument ve Wordu, kde odpovídám na výzkumné otázky a vytvářím závěry z jednotlivých skriptů.
+Kontakt: jan.koppan@seznam.cz
