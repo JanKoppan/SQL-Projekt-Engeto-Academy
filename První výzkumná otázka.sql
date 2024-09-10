@@ -13,12 +13,12 @@ WITH yearly_avg AS (
     GROUP BY 
         industry_branch_code, 
         payroll_year
-        )
-    SELECT 
-        industry_branch_code,
-        payroll_year,
-        avg_value
-    FROM 
-        yearly_avg
-    WHERE 
-        avg_value < prev_avg_value;
+)
+SELECT 
+    industry_branch_code,
+    payroll_year,
+    avg_value
+FROM 
+    yearly_avg
+WHERE 
+    avg_value < prev_avg_value;
